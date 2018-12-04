@@ -36,6 +36,7 @@ class Player {
       this.playState = 'paused';
       this.currentlyPlaying.element.removeClass('playing').addClass('paused');
     }
+    $('#time-control .total-time').text(player.getDuration());
   }
 
   skipTo (percent) {
@@ -47,6 +48,17 @@ class Player {
     this.volume = percent;
     this.soundObject.setVolume(percent);
   }
+
+  prettyTime (timeInSeconds) {
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = ( "00" + (Math.floor(timeInSeconds % 60))).substr(-2);
+
+  return `${minutes}:${seconds}`;
 }
+
+
+}
+
+
 
 const player = new Player();
